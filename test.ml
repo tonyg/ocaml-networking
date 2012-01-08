@@ -25,6 +25,7 @@ let rec accept_loop sock =
   accept_loop sock
 
 let _ =
+  Sys.set_signal Sys.sigpipe Sys.Signal_ignore;
   let sock = socket PF_INET SOCK_STREAM 0 in
   setsockopt sock SO_REUSEADDR true;
   bind sock (ADDR_INET (inet_addr_of_string "0.0.0.0", 8989));

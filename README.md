@@ -98,9 +98,11 @@ repeatedly accepts a connection and spawns a connection thread for it.
 Finally, the block of code that starts the whole service running,
 creating the TCP server socket and entering the accept loop. We set
 `SO_REUSEADDR` on the socket, listen on port 8989 with a connection
-backlog of 5, and enter the accept loop.
+backlog of 5, and enter the accept loop. We catch and ignore SIGPIPE
+in order to avoid crashing when a client departs unexpectedly.
 
     let _ =
+      Sys.set_signal Sys.sigpipe Sys.Signal_ignore;
       let sock = socket PF_INET SOCK_STREAM 0 in
       setsockopt sock SO_REUSEADDR true;
       bind sock (ADDR_INET (inet_addr_of_string "0.0.0.0", 8989));
