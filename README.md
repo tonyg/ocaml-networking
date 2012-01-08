@@ -79,11 +79,12 @@ concurrent connections.
       in
       count 10;
       printf "Closing the connection.\n%!";
-      flush cout;
       close s
 
-Note the calls to `flush`, forcing buffered output out to the actual
-socket.
+Note the mysterious `%!` format specifiers in the format strings:
+these translate into calls to `flush`, forcing buffered output out to
+the actual socket. The alternative would be to call `flush cout`
+directly ourselves.
 
 The function that depends on `conn_main` is the accept loop, which
 repeatedly accepts a connection and spawns a connection thread for it.
