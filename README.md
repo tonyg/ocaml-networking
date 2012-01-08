@@ -3,7 +3,7 @@
 <i>7 January, 2012</i>
 
 Some years ago, I [experimented with networking in
-SML/NJ](http://github.com/tonyg/smlnj-networking/) and spent a few
+SML/NJ](http://github.com/tonyg/smlnj-networking/#readme) and spent a few
 hours figuring out how to write a multithreaded TCP/IP server using
 SML/NJ. Here, I've performed the same exercise with OCaml 3.12.1.
 
