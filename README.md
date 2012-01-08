@@ -69,13 +69,13 @@ concurrent connections.
     let conn_main s =
       let cout = out_channel_of_descr s in
       let rec count n =
-	match n with
-	| 0 ->
-	    fprintf cout "Bye!\r\n%!"
-	| _ ->
-	    fprintf cout "Hello %d\r\n%!" n;
-	    Thread.delay 0.5;
-	    count (n - 1)
+        match n with
+        | 0 ->
+            fprintf cout "Bye!\r\n%!"
+        | _ ->
+            fprintf cout "Hello %d\r\n%!" n;
+            Thread.delay 0.5;
+            count (n - 1)
       in
       count 10;
       printf "Closing the connection.\n%!";
